@@ -193,22 +193,34 @@ constructor(student){
   this.favSubjects =student.faveStudents;
   this.grade = 100;
 }
+
 listSubjects(){
   let subjects = "Loving"
   for(let i = 0; i < this.favSubjects.length; i++){
     if(i < this.favSubjects.length - 1) {
       subjects += `${this.favSubjects[i]}!`;
     }
+
    }
 return subjects;
   }
+
 PRAssignment(subject){
   return `${this.name} has submitted a PR for ${subject}`;
 }
+
 sprintChallenge(subject){
-  return ``
+  return `${this.name} has begun sprint challenge on ${subject}`;
 }
+
+graduate() {
+  if(this.grade >= 70) {
+    return `Congratulations, you graduate with a grade of ${this.grade}`;
+  } else {
+    return `I'm sorry, your grade is ${this.grade} which is not enough to graduate. Please see your Instructor or PM to check your assignment grades`;
+  }
 }
+
 
 /*
   TASK 6
@@ -223,8 +235,18 @@ sprintChallenge(subject){
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor {
+constructor(pm) {
+  super(pm);
+  this.gradClassName = pm.gradClassName;
+  this.favInstructor = pm.faveInstructor;
+  }
+standUp(channel){
+  return `${this.name} announces to ${channel}, @channel standy times!`;
+}
+debugsCode(student, subject){
+  return `${this.name} debugs ${student.name}'s code on ${subject}`;
+}
 }
 
 /*
